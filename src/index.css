@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+.text-glowlight {
+  text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white,
+    -1px 1px 0 white;
+}
