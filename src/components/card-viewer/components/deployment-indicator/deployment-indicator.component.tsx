@@ -20,9 +20,11 @@ export function DeploymentIndicator({ areas }: DeploymentIndicatorProps) {
             {row.map((position) => (
               <div
                 key={position.index}
-                className={`h-2 w-2 rounded-xs border ${
+                className={`h-2 w-2 rounded-xs border-gray-50 border ${
                   position.areaMatchWithPosition ? "bg-gray-50" : ""
-                } ${!position.areaMatchWithPosition && "opacity-25"}`}
+                } ${
+                  position.areaMatchWithPosition ? "opacity-100" : "opacity-25"
+                }`}
               />
             ))}
           </div>

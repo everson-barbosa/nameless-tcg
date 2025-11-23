@@ -1,39 +1,14 @@
 import { HeartIcon } from "lucide-react";
-import type {
-  AttackAreaKind,
-  Directions,
-  MobilityType,
-} from "../../types/card.type";
+import type { Card } from "../../types/card.type";
 import { AttackDescription } from "./components/attack-description/attack-description.component";
 import { DeploymentIndicator } from "./components/deployment-indicator/deployment-indicator.component";
 import { DirectionsIndicator } from "./components/directions-indicator/directions-indicator.component";
 import { RotateIndicator } from "./components/rotate-indicator/rotate-indicator.component";
 import { SpeedIndicator } from "./components/speed-indicator/speed-indicator.component";
-import { MobilityIndicator } from "./components/mobility-indicator/mobility-indicator.component";
-
-interface Card {
-  title: string;
-  artwork: string;
-  deploymentAreas: Array<[number, number]>;
-  speed: number;
-  rotation: number;
-  mobility: MobilityType;
-  directions: Directions;
-  attack: {
-    title: string;
-    cost: number;
-    kind: AttackAreaKind;
-    target: Array<{ x: number; y: number }>;
-  };
-}
-
-interface CardTroop extends Card {
-  kind: "troop";
-  vigor: number;
-}
+import { TagList } from "./components/tag-list/tag-list.component";
 
 interface CardViewerProps {
-  readonly card: CardTroop;
+  readonly card: Card;
 }
 
 export function CardViewer({ card }: CardViewerProps) {
@@ -48,15 +23,18 @@ export function CardViewer({ card }: CardViewerProps) {
             style={{
               backgroundColor: "rgba(0,0,0,.75)",
             }}
-            className="py-0 p-2 flex flex-row justify-between items-center border-b"
+            className="py-1 p-2 flex flex-row justify-between items-center border-b"
           >
             <h1 className="text-xs">{card.title}</h1>
 
             <span className="relative flex flex-row gap-1 items-center">
               <span className="text-lg">
-                {String(card.vigor).padStart(2, "0")}
+                {String(card.health).padStart(2, "0")}
               </span>
-              <HeartIcon className="" width={12} height={12} />
+              <div className="flex flex-col gap-0 items-center">
+                <span className="text-[10px]">Vigor</span>
+                <HeartIcon className="" width={18} height={18} />
+              </div>
             </span>
           </header>
 
@@ -66,31 +44,12 @@ export function CardViewer({ card }: CardViewerProps) {
               backgroundColor: "rgba(0,0,0,.75)",
             }}
           >
-            <div className="p-2">
-              <div className="flex flex-col gap-4">
-                <ul className="flex flex-row gap-1">
-                  <li className="px-2 h-4 flex text-[9px] text-gray-50 border rounded-sm">
-                    Atirador
-                  </li>
-                  <li className="px-2 h-4 flex text-[9px] text-gray-50 border rounded-sm">
-                    Humanóide
-                  </li>
-                  <li className="px-2 h-4 flex text-[9px] text-gray-50 border rounded-sm">
-                    Místico
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <TagList tags={card.tags} />
 
             <hr />
 
-            <div className="p-2">
-              <AttackDescription
-                title={card.attack.title}
-                cost={card.attack.cost}
-                kind={card.attack.kind}
-                target={card.attack.target}
-              />
+            <div className="p-2 h-28">
+              <AttackDescription attack={card.attack} />
             </div>
 
             <hr />
@@ -108,12 +67,7 @@ export function CardViewer({ card }: CardViewerProps) {
 
               <div className="flex flex-col items-center">
                 <h4 className="text-[9px]">Velocidade</h4>
-                <SpeedIndicator speed={card.speed} />
-              </div>
-
-              <div className="flex flex-col items-center">
-                <h4 className="text-[9px]">Mobilidade</h4>
-                <MobilityIndicator mobility={card.mobility} />
+                <SpeedIndicator speed={card.speed} mobility={card.mobility} />
               </div>
 
               <div className="flex flex-col items-center">

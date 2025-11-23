@@ -1,33 +1,48 @@
-import { SparkleIcon } from "lucide-react";
-import { DamageAreaIndicator } from "./damage-area-indicator/damage-area-indicator.component";
-import type { AttackAreaKind } from "../../../../types/card.type";
+import type { TroopAttack } from "@/types/card.type";
+import { CostIndicator } from "./components/cost-indicator/cost-indicator.component";
+import { HeartMinusIcon, HeartPlusIcon } from "lucide-react";
+import { PatternAreaIndicator } from "./components/pattern-area-indicator/pattern-area-indicator.component";
 
 interface AttackDescriptionProps {
-  title: string;
-  cost: number;
-  target?: Array<{ x: number; y: number }>;
-  kind: AttackAreaKind;
+  attack: TroopAttack;
 }
 
-export function AttackDescription({
-  title,
-  cost,
-  target,
-  kind,
-}: AttackDescriptionProps) {
+export function AttackDescription({ attack }: AttackDescriptionProps) {
+  const isHealthPositive = attack.healthDelta > 0;
+  const healthDeltaPrefix = isHealthPositive ? "+" : "";
+  const HealtDeltaIcon = isHealthPositive ? HeartPlusIcon : HeartMinusIcon;
+
   return (
-    <div className="flex flex-row justify-between">
-      <div className="flex flex-row gap-2">
-        <div className="w-20 flex flex-row items-start text-sm">
-          {[...new Array(cost).keys()].map((item) => (
-            <SparkleIcon key={item} width={18} height={18} />
-          ))}
+    <div className="flex flex-row gap-1 justify-between">
+      <div>
+        <div className="flex flex-row gap-2">
+          <CostIndicator cost={attack.cost} />
+          <span className="text-[10px]">{attack.title}</span>
         </div>
-        <span className="text-xs">{title}</span>
+
+        <div className="flex flex-row justify-between">
+          <div>
+            <div className="flex flex-row items items-center gap-1">
+              <span className="text-4xl">
+                {healthDeltaPrefix}
+                {attack.healthDelta}
+              </span>
+              <div className="flex flex-col items-center">
+                <span className="text-[10px]">Vigor</span>
+                <HealtDeltaIcon width={18} height={18} />
+              </div>
+            </div>
+
+            <div>
+              <span className="text-[10px]">Afeta: </span>
+              <span className="text-[10px]">{attack.affect}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div>
-        <DamageAreaIndicator target={target ?? []} kind={kind} />
+        <PatternAreaIndicator pattern={attack.pattern} area={attack.area} />
       </div>
     </div>
   );
