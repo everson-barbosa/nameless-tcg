@@ -48,7 +48,7 @@ export function CardViewer({ card }: CardViewerProps) {
 
             <hr />
 
-            <div className="p-2 h-28">
+            <div className="p-2 h-24">
               <AttackDescription attack={card.attack} />
             </div>
 

@@ -1,9 +1,13 @@
 import type {
   TroopAttackArea,
   TroopAttackPattern,
+  TroopAttackPatternAroundArea,
+  TroopAttackPatternFixedArea,
   TroopAttackPatternFrontArea,
 } from "@/types/card.type";
-import { PatternFrontAreaIndicator } from "./pattern-front-area-indicator/pattern-front-area-indicator.component";
+import { PatternFrontAreaIndicator } from "./components/pattern-front-area-indicator/pattern-front-area-indicator.component";
+import { PatternAroundAreaIndicator } from "./components/pattern-around-area-indicator/pattern-around-area-indicator.component";
+import { PatternFixedAreaIndicator } from "./components/pattern-fixed-area-indicator/pattern-fixed-area-indicator.component";
 
 interface PatternAreaIndicatorProps {
   readonly pattern: TroopAttackPattern;
@@ -20,9 +24,15 @@ export function PatternAreaIndicator({
         <PatternFrontAreaIndicator area={area as TroopAttackPatternFrontArea} />
       );
     case "AROUND":
-      return "Around";
+      return (
+        <PatternAroundAreaIndicator
+          area={area as TroopAttackPatternAroundArea}
+        />
+      );
     case "FIXED":
-      return "Fixed";
+      return (
+        <PatternFixedAreaIndicator area={area as TroopAttackPatternFixedArea} />
+      );
     default:
       return null;
   }
