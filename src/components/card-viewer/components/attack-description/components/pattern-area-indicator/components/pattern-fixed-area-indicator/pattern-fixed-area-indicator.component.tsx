@@ -1,14 +1,28 @@
 import type { TroopAttackPatternFixedArea } from "@/types/card.type";
-import { Grid3x3Icon } from "lucide-react";
+import { CrosshairIcon } from "lucide-react";
 
 const ROWS = 3;
 const COLUMNS = 3;
 
 const FIELDS: Record<TroopAttackPatternFixedArea, number[][]> = {
-  COLUMN: [],
-  CROSSED: [],
-  ROW: [],
-  UNIQUE: [],
+  ROW: [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ],
+  COLUMN: [
+    [0, 1],
+    [1, 1],
+    [2, 1],
+  ],
+  CROSSED: [
+    [0, 1],
+    [1, 0],
+    [1, 1],
+    [1, 2],
+    [2, 1],
+  ],
+  UNIQUE: [[1, 1]],
 };
 
 interface CheckIfPositionIsActiveProps {
@@ -61,7 +75,7 @@ export function PatternFixedAreaIndicator({
       </div>
 
       <div className="flex flex-col gap-0 items-center">
-        <Grid3x3Icon width={18} height={18} />
+        <CrosshairIcon width={18} height={18} />
 
         <span className="text-[10px]">Fixo</span>
       </div>

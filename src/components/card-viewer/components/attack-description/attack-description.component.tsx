@@ -25,8 +25,6 @@ export function AttackDescription({ attack }: AttackDescriptionProps) {
             />
           </div>
 
-          <div></div>
-
           <div>
             <PatternAreaIndicator pattern={attack.pattern} area={attack.area} />
           </div>
