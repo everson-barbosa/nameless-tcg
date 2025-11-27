@@ -22,7 +22,7 @@ const FIELDS: Record<TroopAttackPatternFrontArea, number[][]> = {
     [1, 1],
     [2, 1],
   ],
-  COLUMN: [
+  ROW: [
     [0, 0],
     [0, 1],
     [0, 2],
@@ -70,7 +70,7 @@ export function PatternFrontAreaIndicator({
               return (
                 <div
                   key={column}
-                  className={`h-4 w-4 rounded-xs border-gray-50 border ${
+                  className={`h-2 w-2 rounded-xs border-gray-50 border ${
                     areaMatchWithPosition ? "bg-gray-50" : ""
                   } ${areaMatchWithPosition ? "opacity-100" : "opacity-25"}`}
                 />

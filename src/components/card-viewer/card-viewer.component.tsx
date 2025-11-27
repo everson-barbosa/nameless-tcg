@@ -32,8 +32,8 @@ export function CardViewer({ card }: CardViewerProps) {
                 {String(card.health).padStart(2, "0")}
               </span>
               <div className="flex flex-col gap-0 items-center">
-                <span className="text-[10px]">Vigor</span>
                 <HeartIcon className="" width={18} height={18} />
+                <span className="text-[10px]">Vigor</span>
               </div>
             </span>
           </header>
@@ -55,24 +55,24 @@ export function CardViewer({ card }: CardViewerProps) {
             <hr />
 
             <div className="flex flex-row justify-between items-center p-2">
-              <div className="flex flex-col items-center">
-                <h4 className="text-[9px]">Instalação</h4>
+              <div className="flex flex-col items-center gap-1">
                 <DeploymentIndicator areas={card.deploymentAreas} />
+                <h4 className="text-[9px]">Instalação</h4>
               </div>
 
-              <div className="flex flex-col items-center">
-                <h4 className="text-[9px]">Direções</h4>
+              <div className="flex flex-col items-center gap-1">
                 <DirectionsIndicator directions={card.directions} />
+                <h4 className="text-[9px]">Direções</h4>
               </div>
 
-              <div className="flex flex-col items-center">
-                <h4 className="text-[9px]">Velocidade</h4>
+              <div className="flex flex-col items-center gap-1">
                 <SpeedIndicator speed={card.speed} mobility={card.mobility} />
+                <h4 className="text-[9px]">Velocidade</h4>
               </div>
 
-              <div className="flex flex-col items-center">
-                <h4 className="text-[9px] text-center">Rotação</h4>
+              <div className="flex flex-col items-center gap-1">
                 <RotateIndicator rotation={card.rotation} />
+                <h4 className="text-[9px] text-center">Rotação</h4>
               </div>
             </div>
           </section>

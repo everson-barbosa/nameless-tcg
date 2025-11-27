@@ -10,7 +10,7 @@ export type TroopAttackPatternFrontArea =
   | "PIERCE"
   | "BOW"
   | "LASER"
-  | "COLUMN"
+  | "ROW"
   | "DELTA";
 export type TroopAttackPatternAroundArea =
   | "BACK_AND_FRONT"
@@ -19,12 +19,10 @@ export type TroopAttackPatternAroundArea =
   | "AURA"
   | "X";
 export type TroopAttackPatternFixedArea =
-  | "CENTRAL"
-  | "DARK"
-  | "CLEAR"
-  | "TOTAL"
-  | "CRUSADE"
-  | "REARGUARD";
+  | "UNIQUE"
+  | "CROSSED"
+  | "ROW"
+  | "COLUMN";
 
 export type TroopAttackArea =
   | TroopAttackPatternFrontArea
@@ -33,13 +31,16 @@ export type TroopAttackArea =
 
 export type AttackAffect = "CONRADE" | "ENEMY" | "ALL";
 
+export type AttackEffect = "DAMAGE" | "HEAL" | "PUSH";
+
 export interface TroopAttack {
   title: string;
   cost: number;
   pattern: TroopAttackPattern;
   area: TroopAttackArea;
   affect: AttackAffect;
-  healthDelta: number;
+  effect: AttackEffect;
+  value: number;
 }
 
 export interface Card {

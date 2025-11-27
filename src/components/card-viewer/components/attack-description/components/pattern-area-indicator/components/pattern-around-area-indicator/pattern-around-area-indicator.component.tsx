@@ -74,7 +74,7 @@ export function PatternAroundAreaIndicator({
                 return (
                   <div
                     key={column}
-                    className="h-4 w-4 rounded-xs border-gray-50 border opacity-0"
+                    className="h-2 w-2 rounded-xs border-gray-50 border opacity-0"
                   />
                 );
 
@@ -87,7 +87,7 @@ export function PatternAroundAreaIndicator({
               return (
                 <div
                   key={column}
-                  className={`h-4 w-4 rounded-xs border-gray-50 border ${
+                  className={`h-2 w-2 rounded-xs border-gray-50 border ${
                     areaMatchWithPosition ? "bg-gray-50" : ""
                   } ${areaMatchWithPosition ? "opacity-100" : "opacity-25"}`}
                 />

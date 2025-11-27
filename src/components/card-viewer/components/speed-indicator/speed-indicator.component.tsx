@@ -35,9 +35,8 @@ export function SpeedIndicator({ speed, mobility }: SpeedIndicatorProps) {
     <div className="h-12 w-12">
       <div className="flex flex-col items-center justify-center">
         <span className="text-xs">{speed}</span>
-        <Mobility.icon width={18} height={18} />
-
         <span className="text-[9px]">({Mobility.type})</span>
+        <Mobility.icon width={18} height={18} />
       </div>
     </div>
   );
